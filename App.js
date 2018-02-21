@@ -1,11 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Decks from "./src/components/view/Decks";
-import NewDeck from "./src/components/view/NewDeck";
-import {TabNavigator} from "react-navigation";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import rootReducer from './src/reducers/index';
+import Tabs from "./src/components/navigation/Tabs";
 
 
 export default class App extends React.Component {
@@ -26,12 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const Tabs = TabNavigator({
-    'Decks': {
-        screen: Decks,
-        // }
-    },
-    'Add Entry': {
-        screen: NewDeck,
-    }
-});
+
