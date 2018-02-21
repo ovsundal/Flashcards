@@ -1,7 +1,9 @@
 import React from "react";
 import {Button, Text, TextInput, View} from "react-native";
+import {connect} from 'react-redux';
+import {addNewDeck} from "../action/index";
 
-export default class NewDeck extends React.Component {
+class NewDeck extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +17,7 @@ export default class NewDeck extends React.Component {
         //add deck to redux here and pass to NewQuestion view
 
         const newDeck = this.state;
-
+        this.props.dispatch(addNewDeck(newDeck));
     };
 
     render() {
@@ -34,3 +36,11 @@ export default class NewDeck extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps)(NewDeck)
