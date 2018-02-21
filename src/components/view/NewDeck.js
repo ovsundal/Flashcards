@@ -12,7 +12,10 @@ export default class NewDeck extends React.Component {
     }
 
     addNewDeckHandler = () => {
-      //add deck to redux here and pass to NewQuestion view
+        //add deck to redux here and pass to NewQuestion view
+
+        const newDeck = this.state;
+
     };
 
     render() {
