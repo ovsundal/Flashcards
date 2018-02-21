@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Text, TextInput, View} from "react-native";
 
-export default class Decks extends React.Component {
+export default class NewDeck extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ export default class Decks extends React.Component {
         }
     }
 
-    addNewDeckHandler = {
+    addNewDeckHandler = () => {
       //add deck to redux here and pass to NewQuestion view
     };
 
