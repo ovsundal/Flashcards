@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Text, TextInput, View} from "react-native";
 import {connect} from 'react-redux';
 import {addNewDeck} from "../action/index";
+const uuidv1 = require('uuid/v1');
 
 class NewDeck extends React.Component {
 
@@ -9,12 +10,13 @@ class NewDeck extends React.Component {
         super(props);
 
         this.state = {
-            text: ''
+            id: uuidv1(),
+            title: '',
+            numberOfCards: 0
         }
     }
 
     addNewDeckHandler = () => {
-        //add deck to redux here and pass to NewQuestion view
 
         const newDeck = this.state;
         this.props.dispatch(addNewDeck(newDeck));
@@ -25,8 +27,8 @@ class NewDeck extends React.Component {
             <View>
                 <Text>Name of new deck:</Text>
                 <TextInput
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
+                    onChangeText={(title) => this.setState({title})}
+                    value={this.state.title}
                 />
                 <Button
                     onPress={this.addNewDeckHandler}

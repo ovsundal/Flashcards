@@ -1,8 +1,7 @@
 import React from "react";
-import {Text, View} from "react-native";
+import {FlatList, Text, View} from "react-native";
 import {connect} from "react-redux";
-
-const {List} = require('immutable');
+import {List, ListItem} from "react-native-elements";
 
 class Decks extends React.Component {
 
@@ -20,9 +19,22 @@ class Decks extends React.Component {
                 {decks !== undefined
                 && decks.length > 0
                 && decks.map((deck) =>
-                    <Text>{deck.text}</Text>
+                    <List>
+                        <FlatList
+                            data={deck}
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => (
+                                <ListItem
+                                    roundAvatar
+                                    title={`${item.title}`}
+                                />
+                            )}
+                        />
+                    </List>
                 )}
+
             </View>
+
         )
     }
 }
