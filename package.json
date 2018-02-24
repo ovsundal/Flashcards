@@ -25,6 +25,7 @@
     "react-native-tab-navigator": "^0.3.4",
     "react-navigation": "^1.0.3",
     "react-redux": "^5.0.7",
-    "redux": "latest"
+    "redux": "latest",
+    "immutable": "latest"
   }
 }
