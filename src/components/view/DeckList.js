@@ -1,9 +1,11 @@
 import React from "react";
 import {FlatList, Text, View} from "react-native";
 import {connect} from "react-redux";
-import {List, ListItem} from "react-native-elements";
+import {Card, List, ListItem} from "react-native-elements";
 
-class Decks extends React.Component {
+// import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+
+class DeckList extends React.Component {
 
 
     constructor(props) {
@@ -11,6 +13,7 @@ class Decks extends React.Component {
 
     }
 
+    _keyExtractor = (item, index) => item.id;
 
     render() {
         const decks = this.props.decks;
@@ -18,20 +21,21 @@ class Decks extends React.Component {
             <View>
                 {decks !== undefined
                 && decks.length > 0
-                && decks.map((deck) =>
-                    <List>
-                        <FlatList
-                            data={deck}
-                            keyExtractor={item => item.id}
-                            renderItem={({item}) => (
-                                <ListItem
-                                    roundAvatar
-                                    title={`${item.title}`}
-                                />
-                            )}
-                        />
-                    </List>
-                )}
+                &&
+                // && decks.map((deck) =>
+                <List>
+                    <FlatList
+                        data={
+                            decks
+                        }
+                        keyExtractor={deck => deck.id}
+                        renderItem={({item}) =>
+                            <Card title={item.title}>
+                                <Text>Cards in deck: {item.numberOfCards}</Text>
+                            </Card>
+                        }
+                    />
+                </List>}
 
             </View>
 
@@ -46,4 +50,4 @@ function mapStateToProps({deckReducer}) {
     }
 }
 
-export default connect(mapStateToProps)(Decks)
+export default connect(mapStateToProps)(DeckList)
