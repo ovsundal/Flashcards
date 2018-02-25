@@ -1,10 +1,15 @@
 import React from "react";
-import {Text, View} from "react-native";
+import {Text, TouchableOpacity} from "react-native";
+import {Card} from "react-native-elements";
 
-function Deck(props) {
-    return(
-        <View>
-            <Text>{props.title}</Text>
-        </View>
+export default function Deck(props) {
+    return (
+        <TouchableOpacity onPress={() => console.log(props.title)}>
+            <Card
+                keyExtractor={deck => deck.id}
+                title={props.title}>
+                <Text>Cards in deck: {props.numberOfCards}</Text>
+            </Card>
+        </TouchableOpacity>
     )
 }
