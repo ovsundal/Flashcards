@@ -1,8 +1,15 @@
 import React from "react";
-import {Text} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
+import {connect} from "react-redux";
 
-export default function SingleDeck(props) {
-    return (
-        <Text>SINGLE DECK VIEW</Text>
+
+export default function SingleDeck() {
+
+    return(
+        <View>
+            <TouchableOpacity >
+            <Text>FROM SINGLE DECK</Text>
+            </TouchableOpacity>
+        </View>
     )
 }

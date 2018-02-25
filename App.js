@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import rootReducer from './src/reducers/index';
-import Tabs from "./src/components/navigation/Tabs";
+import Stack from "./src/components/navigation/Tabs";
 
 
 export default class App extends React.Component {
@@ -11,7 +11,7 @@ export default class App extends React.Component {
     return (
         <Provider store={createStore(rootReducer)}>
             <View style={styles.container}>
-                <Tabs />
+                <Stack />
             </View>
         </Provider>
     );

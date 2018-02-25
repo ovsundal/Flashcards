@@ -1,18 +1,26 @@
 import NewDeck from "../view/NewDeck";
 import {StackNavigator, TabNavigator} from "react-navigation";
 import Decks from "../view/DeckList";
+import SingleDeck from "../view/SingleDeck";
 
-const DeckStack = StackNavigator({
-    Decks: {screen: Decks}
+const Tabs = TabNavigator({
+    Decks: {
+        screen: Decks
+    },
+    NewDeck: {
+        screen: NewDeck
+    }
 });
 
-const NewDeckStack = StackNavigator({
-    NewDeck: {screen: NewDeck}
+
+const Stack = StackNavigator({
+   Home: {
+       screen: Tabs
+   },
+    SingleDeck: {
+       screen: SingleDeck
+    }
 });
 
 
-export default Tabs = TabNavigator(
-    {
-        Decks: {screen: DeckStack},
-        NewDeck: {screen: NewDeckStack}
-    });
+export default Stack;

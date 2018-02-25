@@ -1,4 +1,4 @@
-import {ADD_NEW_DECK} from "./types";
+import {ADD_NEW_DECK, GET_SINGLE_DECK} from "./types";
 
 export const addNewDeck = (deck) => {
     return {
