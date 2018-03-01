@@ -28,6 +28,7 @@
     "react-navigation": "^1.0.3",
     "react-redux": "^5.0.7",
     "redux": "latest",
+    "tcomb-form-native": "^0.6.11",
     "uuid": "latest"
   }
 }
