@@ -5,10 +5,6 @@ import {connect} from "react-redux";
 
 class SingleDeck extends React.Component {
 
-    componentWillReceiveProps(props) {
-        console.log(props)
-    }
-
     render() {
         const deck = this.props.navigation.state.params.newDeck;
 
@@ -19,7 +15,8 @@ class SingleDeck extends React.Component {
                     <Text>{deck.title}</Text>
                     <Text>This deck has {deck.numberOfCards} cards</Text>
                     <Button
-                    title='Create New Question'
+                        onPress={() => this.props.navigation.navigate('NewQuestion', deck)}
+                        title='Create New Question'
                     />
 
                 </View>}

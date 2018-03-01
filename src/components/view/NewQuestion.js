@@ -5,9 +5,10 @@ export default class NewQuestion extends React.Component {
 
 
     render() {
+        const deck = this.props.navigation.state.params;
         return(
             <View>
-                <Text>FROM NEW QUESTION</Text>
+                <Text>Current deck: {deck.title}</Text>
 
             </View>
         )

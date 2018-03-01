@@ -20,7 +20,7 @@ class DeckList extends React.Component {
                     <FlatList
                         data={decks}
                         renderItem={({item}) =>
-                            <TouchableOpacity onPress={(item) => this.props.navigation.navigate('SingleDeck')}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('SingleDeck')}>
                                 <Card
                                     keyExtractor={deck => deck.id}
                                     title={item.title}>
