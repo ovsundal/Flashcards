@@ -10,16 +10,22 @@ class NewDeck extends React.Component {
         super(props);
 
         this.state = {
-            id: uuidv1(),
             title: '',
-            numberOfCards: 0
         }
     }
-
+    //generate uuid for deck, store, and navigate to its SingleDeck view
     addNewDeckHandler = () => {
 
-        const newDeck = this.state;
+        //hard copy state
+        const newDeck = {
+            ...this.state,
+            id: uuidv1(),
+            numberOfCards: 0
+        };
+
         this.props.dispatch(addNewDeck(newDeck));
+        this.state.title = '';
+        this.props.navigation.navigate('SingleDeck', {newDeck});
     };
 
     render() {

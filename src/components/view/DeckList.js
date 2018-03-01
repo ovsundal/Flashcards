@@ -2,10 +2,8 @@ import React from "react";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {Card, List} from "react-native-elements";
-import * as props from "react-navigation";
 
 class DeckList extends React.Component {
-
 
     constructor(props) {
         super(props);
@@ -22,7 +20,7 @@ class DeckList extends React.Component {
                     <FlatList
                         data={decks}
                         renderItem={({item}) =>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('SingleDeck')}>
+                            <TouchableOpacity onPress={(item) => this.props.navigation.navigate('SingleDeck')}>
                                 <Card
                                     keyExtractor={deck => deck.id}
                                     title={item.title}>
