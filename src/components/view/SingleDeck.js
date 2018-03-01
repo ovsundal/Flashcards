@@ -17,6 +17,9 @@ class SingleDeck extends React.Component {
                     <Button
                         onPress={() => this.props.navigation.navigate('NewQuestion', deck)}
                         title='Create New Question'
+                    /><Button
+                        onPress={() => this.props.navigation.navigate('StartQuiz', deck)}
+                        title='Start quiz'
                     />
 
                 </View>}

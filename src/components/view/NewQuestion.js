@@ -10,6 +10,8 @@ export default class NewQuestion extends React.Component {
             <View>
                 <Text>Current deck: {deck.title}</Text>
 
+                <Text></Text>
+
             </View>
         )
     }

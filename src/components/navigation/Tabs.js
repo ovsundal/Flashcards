@@ -3,6 +3,7 @@ import {StackNavigator, TabNavigator} from "react-navigation";
 import Decks from "../view/DeckList";
 import SingleDeck from "../view/SingleDeck";
 import NewQuestion from "../view/NewQuestion";
+import StartQuiz from "../view/StartQuiz";
 
 const Tabs = TabNavigator({
     Decks: {
@@ -23,6 +24,9 @@ const Stack = StackNavigator({
     },
     NewQuestion: {
        screen: NewQuestion
+    },
+    StartQuiz: {
+       screen: StartQuiz
     }
 });
 
