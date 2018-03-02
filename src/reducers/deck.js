@@ -1,4 +1,4 @@
-import {ADD_NEW_DECK} from "../components/action/types";
+import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK} from "../components/action/types";
 const {List} = require('immutable');
 
 export default function DeckReducer(state = [], action) {

@@ -7,10 +7,4 @@ export const saveDeckTitle = (deck) => {
     }
 };
 
-export const addCardToDeck = (id, card) => {
-    return {
-        type: ADD_QUESTION_TO_DECK,
-        deck: id,
-        card: card
-    }
-};
+
