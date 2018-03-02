@@ -1,2 +1,2 @@
 export const ADD_NEW_DECK = 'ADD_NEW_DECK';
-export const GET_SINGLE_DECK = 'GET_SINGLE_DECK';
+export const ADD_QUESTION_TO_DECK = 'ADD_QUESTION_TO_DECK';

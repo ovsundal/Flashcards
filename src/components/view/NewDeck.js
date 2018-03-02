@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Text, TextInput, View} from "react-native";
 import {connect} from 'react-redux';
-import {addNewDeck} from "../action/index";
+import {saveDeckTitle} from "../action/index";
 const uuidv1 = require('uuid/v1');
 
 class NewDeck extends React.Component {
@@ -23,7 +23,7 @@ class NewDeck extends React.Component {
             numberOfCards: 0
         };
 
-        this.props.dispatch(addNewDeck(newDeck));
+        this.props.dispatch(saveDeckTitle(newDeck));
         this.state.title = '';
         this.props.navigation.navigate('SingleDeck', {newDeck});
     };
