@@ -3,6 +3,7 @@ import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {Card, List} from "react-native-elements";
 
+
 class DeckList extends React.Component {
 
     constructor(props) {
@@ -10,12 +11,18 @@ class DeckList extends React.Component {
 
     }
 
+    componentDidMount() {
+        this.props.dispatch(fetchDecks())
+    }
+
     render() {
         const decks = this.props.decks;
+        console.log('from render')
+        console.log(decks)
         return (
             <View>
                 {decks !== undefined
-                && decks.length > 0
+                && Object.values(decks).length > 0
                 && <List>
                     <FlatList
                         data={decks}
@@ -24,7 +31,7 @@ class DeckList extends React.Component {
                                 <Card
                                     keyExtractor={deck => deck.id}
                                     title={item.title}>
-                                    <Text>Cards in deck: {item.numberOfCards}</Text>
+                                    <Text>Cards in deck: {item.questions.length}</Text>
                                 </Card>
                             </TouchableOpacity>
                         }
@@ -38,6 +45,8 @@ class DeckList extends React.Component {
 }
 
 function mapStateToProps({deckReducer}) {
+    console.log('from decklist')
+    console.log(deckReducer)
     return {
         decks: deckReducer
     }

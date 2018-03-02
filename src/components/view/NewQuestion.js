@@ -17,13 +17,13 @@ class NewQuestion extends React.Component {
     //extract form data, add parentId, dispatch and clear form
     handleSubmit = () => {
         const card = JSON.parse(JSON.stringify(this._form.getValue()));
-        card.parentId = this.props.navigation.state.params.id;
         this.props.dispatch(addCardToDeck(card));
         this.setState({value: null});
     };
 
     render() {
         const deck = this.props.navigation.state.params;
+        console.log(deck)
         return(
             <View>
                 <Text>Current deck: {deck.title}</Text>

@@ -1,2 +1,3 @@
+export const FETCH_DECKS = 'FETCH_DECKS';
 export const ADD_NEW_DECK = 'ADD_NEW_DECK';
 export const ADD_QUESTION_TO_DECK = 'ADD_QUESTION_TO_DECK';
