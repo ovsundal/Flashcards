@@ -9,7 +9,12 @@ export default function DeckReducer(state = {}, action) {
         }
 
         case ADD_NEW_DECK: {
-            return {...state, ...action.deck};
+
+            console.log('add new deck called IT WORKS')
+            // console.log(state)
+            console.log(action)
+
+            return {...state, ...action.decks};
         }
         case ADD_QUESTION_TO_DECK: {
 

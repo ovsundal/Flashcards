@@ -13,15 +13,15 @@ class NewDeck extends React.Component {
             questions: []
         }
     }
-    //generate uuid for deck, store, and navigate to its SingleDeck view
+
+    //generate new deck, send it to action, reset state and navigate to singledeck view
     addNewDeckHandler = () => {
 
-        //hard copy state
-        const newDeck = {
-            ...this.state
-        };
+        const nameOfNewDeck = JSON.parse(JSON.stringify(this.state.title));
+        const newDeck = {};
+        newDeck[nameOfNewDeck] = {...this.state};
 
-        this.props.dispatch(saveDeckTitle(newDeck));
+        this.props.saveDeckTitle(newDeck);
         this.state.title = '';
         this.props.navigation.navigate('SingleDeck', {newDeck});
     };
@@ -49,4 +49,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(NewDeck)
+export default connect(
+    mapStateToProps,
+    {saveDeckTitle}
+)(NewDeck)

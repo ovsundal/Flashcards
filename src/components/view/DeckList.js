@@ -2,7 +2,6 @@ import React from "react";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {Card, List} from "react-native-elements";
-import {fetchDecksFromStorage} from "../util/StorageApi"
 import {getDecks} from "../action";
 
 
@@ -16,7 +15,6 @@ class DeckList extends React.Component {
 
     render() {
         const decks = this.props.decks;
-        console.log(decks)
         return (
             <View>
                 {decks !== undefined

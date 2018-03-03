@@ -1,4 +1,5 @@
 import {AsyncStorage} from 'react-native';
+
 export const DECK_KEY = 'flashcards';
 
 const data = {
@@ -27,12 +28,17 @@ const data = {
 };
 
 export function fetchDecksFromStorage() {
-    return AsyncStorage.getItem(DECK_KEY).then(results => {
-        return results === null ? feedInitialData() : JSON.parse(results)
-    });
+    return AsyncStorage.getItem(DECK_KEY)
+        .then(results => {
+            return results === null ? feedInitialData() : JSON.parse(results)
+        });
 }
 
 export function feedInitialData() {
     AsyncStorage.setItem(DECK_KEY, JSON.stringify(data));
     return data;
+}
+
+export function addDeckToStorage(deck) {
+    return AsyncStorage.mergeItem(DECK_KEY, JSON.stringify(deck));
 }
