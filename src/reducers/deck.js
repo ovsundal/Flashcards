@@ -9,13 +9,9 @@ export default function DeckReducer(state = {}, action) {
         }
 
         case ADD_NEW_DECK: {
-
-            console.log('add new deck called IT WORKS')
-            // console.log(state)
-            console.log(action)
-
-            return {...state, ...action.decks};
+            return {...action.decks};
         }
+
         case ADD_QUESTION_TO_DECK: {
 
             console.log('add question red called')

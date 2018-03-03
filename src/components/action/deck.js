@@ -12,10 +12,10 @@ export const getDecks = () => dispatch =>
 
 export const saveDeckTitle = (deck) => dispatch => {
     addDeckToStorage(deck)
-        .then((deck) => dispatch(
+        .then((decks) => dispatch(
             {
                 type: ADD_NEW_DECK,
-                deck
+                decks
             }
         ));
 };
