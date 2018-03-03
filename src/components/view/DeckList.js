@@ -25,12 +25,12 @@ class DeckList extends React.Component {
                         renderItem={({item}) =>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('SingleDeck')}>
                                 <Card
-                                    keyExtractor={deck => deck.id}
                                     title={item.title}>
                                     <Text>Cards in deck: {item.questions.length}</Text>
                                 </Card>
                             </TouchableOpacity>
                         }
+                        keyExtractor={(item, index) => index}
                     />
                 </List>
                 }
