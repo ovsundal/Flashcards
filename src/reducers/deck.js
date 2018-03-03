@@ -1,15 +1,19 @@
-import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK} from "../components/action/types";
+import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS} from "../components/action/types";
 const {List} = require('immutable');
 
 export default function DeckReducer(state = {}, action) {
     switch (action.type) {
+
+        case GET_ALL_DECKS: {
+            return {...state, ...action.decks};
+        }
 
         case ADD_NEW_DECK: {
             return {...state, ...action.deck};
         }
         case ADD_QUESTION_TO_DECK: {
 
-            // console.log('add question red called')
+            console.log('add question red called')
             // console.log(action.card)
             // console.log(state)
             // console.log(action.card)

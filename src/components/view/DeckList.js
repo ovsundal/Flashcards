@@ -2,6 +2,8 @@ import React from "react";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {Card, List} from "react-native-elements";
+import {fetchDecksFromStorage} from "../util/StorageApi"
+import {getDecks} from "../action";
 
 
 class DeckList extends React.Component {
@@ -9,15 +11,11 @@ class DeckList extends React.Component {
     constructor(props) {
         super(props);
 
-    }
-
-    componentDidMount() {
-        this.props.dispatch(fetchDecks())
+        this.props.getDecks();
     }
 
     render() {
         const decks = this.props.decks;
-        console.log('from render')
         console.log(decks)
         return (
             <View>
@@ -45,11 +43,12 @@ class DeckList extends React.Component {
 }
 
 function mapStateToProps({deckReducer}) {
-    console.log('from decklist')
-    console.log(deckReducer)
     return {
-        decks: deckReducer
+        decks: Object.values(deckReducer)
     }
 }
 
-export default connect(mapStateToProps)(DeckList)
+export default connect(
+    mapStateToProps,
+    {getDecks}
+)(DeckList)

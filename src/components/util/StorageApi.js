@@ -26,13 +26,13 @@ const data = {
     }
 };
 
-export function getDecks() {
+export function fetchDecksFromStorage() {
     return AsyncStorage.getItem(DECK_KEY).then(results => {
-        return results === null ? feedData() : JSON.parse(results)
+        return results === null ? feedInitialData() : JSON.parse(results)
     });
 }
 
-export function feedData() {
+export function feedInitialData() {
     AsyncStorage.setItem(DECK_KEY, JSON.stringify(data));
     return data;
 }
