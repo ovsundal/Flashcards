@@ -23,7 +23,7 @@ class StartQuiz extends React.Component {
     handleAnswer = (type) => {
         const newState = {...this.state};
 
-        if(type === 'correct') {
+        if (type === 'correct') {
             newState.cardIndex++;
             newState.currentScore++;
         } else {
@@ -38,31 +38,34 @@ class StartQuiz extends React.Component {
     render() {
 
         const {singleDeck} = this.props;
-
+        const {cardIndex, currentScore} = this.state;
         return (
             <View>
                 {Object.keys(singleDeck).length > 0
                 &&
                 <View>
-                    <Text>{this.state.cardIndex} / {singleDeck.questions.length}</Text>
-                    <Text>Score: {this.state.currentScore} / {singleDeck.questions.length}</Text>
+                    <Text>{cardIndex} / {singleDeck.questions.length}</Text>
+                    <Text>Score: {currentScore} / {singleDeck.questions.length}</Text>
 
-                    {singleDeck.questions.map((card) =>
+                    {[singleDeck.questions[cardIndex]].map((card) =>
                         <Card>
-                            <Text>Question: {card.question}</Text>
 
+                            <Text>Question: {card.question}</Text>
                             <Text>Answer: {card.answer}</Text>
 
                             <Button
-                            title='Correct'
-                            onPress={() => this.handleAnswer('correct')}
+                                title='Correct'
+                                onPress={() => this.handleAnswer('correct')}
                             />
                             <Button
-                            title='Incorrect'
-                            onPress={() => this.handleAnswer('incorrect')}
+                                title='Incorrect'
+                                onPress={() => this.handleAnswer('incorrect')}
                             />
 
-                        </Card>)}
+                        </Card>
+                    )}
+
+
                 </View>
                 }
 
@@ -81,4 +84,4 @@ function mapStateToProps({singleDeckReducer}) {
 export default connect(
     mapStateToProps,
     {getDeck}
-    )(StartQuiz)
+)(StartQuiz)
