@@ -14,48 +14,30 @@ class SingleDeck extends React.Component {
         this.props.getDeck(deckTitle)
     }
 
-    // componentWillReceiveProps(props) {
-    //     console.log('from compwillrecprops')
-    //     console.log(props)
-    // }
-
     render() {
-        // const {singleDeck} = this.props;
-    // console.log('render called')
-    // console.log(this.props)
+        const {singleDeck} = this.props;
 
         return (
             <View>
-                {/*{deck.title &&*/}
-                {/*<View>*/}
-
-                    {/*<Text>This deck has {deck.numberOfCards} cards</Text>*/}
-                    {/*<Button*/}
-                        {/*onPress={() => this.props.navigation.navigate('NewQuestion', deck)}*/}
-                        {/*title='Create New Question'*/}
-                    {/*/><Button*/}
-                        {/*onPress={() => this.props.navigation.navigate('StartQuiz', deck)}*/}
-                        {/*title='Start quiz'*/}
-                    {/*/>*/}
-
-                {/*</View>}*/}
+                {Object.keys(singleDeck).length > 0
+                    &&
+                    <Text>Current deck: {singleDeck.title}</Text>}
 
             </View>
+
+
         )
     }
 
 }
 
 function mapStateToProps({singleDeckReducer}) {
-    // console.log('mapstate')
-    // console.log(singleDeckReducer)
-
     return {
-        singleDeck: Object.values(singleDeckReducer)
+        singleDeck: singleDeckReducer
     }
 }
 
 export default connect(
     mapStateToProps,
     {getDeck}
-    )(SingleDeck)
+)(SingleDeck)
