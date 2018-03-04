@@ -4,6 +4,9 @@ export default function deckReducer(state = {}, action) {
     switch (action.type) {
 
         case GET_ALL_DECKS: {
+            console.log('GET_ALL_DECKS reducer called')
+            console.log(state)
+            console.log(action.decks)
             return {...state, ...action.decks};
         }
 
@@ -11,25 +14,6 @@ export default function deckReducer(state = {}, action) {
             return {...action.decks};
         }
 
-        // case GET_SINGLE_DECK: {
-        //     let singleDeck = {};
-        //
-        //     //find single deck and hard copy
-        //     for (const key in state) {
-        //         if (key === action.deck) {
-        //             singleDeck = {...state[key]};
-        //             break;
-        //         }
-        //     }
-        //
-        //     return singleDeck;
-        // }
-
-        case ADD_CARD_TO_DECK: {
-
-
-            return state;
-        }
         default: {
             return state;
         }

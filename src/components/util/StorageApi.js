@@ -37,9 +37,6 @@ export function fetchDecksFromStorage() {
 export function fetchDeckFromStorage(title) {
     return AsyncStorage.getItem(DECK_KEY)
         .then(results => {
-            // console.log('fetchdeck from async called, title:')
-            // // console.log(results)
-            // console.log('single')
             return Object.values(JSON.parse(results)).filter((deck) => {
                 return deck.title === title;
             });
@@ -55,6 +52,17 @@ export function addDeckToStorage(deck) {
     return AsyncStorage.mergeItem(DECK_KEY, JSON.stringify(deck))
         .then(() => {
             return fetchDecksFromStorage()
+        })
+}
+
+export function addCardToDeckStorage(parentTitle, card) {
+    return AsyncStorage.getItem(DECK_KEY)
+    //retrieve the decks, find the correct deck, and add the card
+        .then((decks) => {
+            decks = JSON.parse(decks);
+            decks[parentTitle].questions.push(card);
+            AsyncStorage.mergeItem(DECK_KEY, JSON.stringify(decks));
+            return fetchDeckFromStorage(parentTitle);
         })
 }
 

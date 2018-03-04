@@ -1,5 +1,5 @@
 import {ADD_NEW_DECK, ADD_CARD_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "./types";
-import {addDeckToStorage, fetchDeckFromStorage, fetchDecksFromStorage} from '../util/StorageApi';
+import {addCardToDeckStorage, addDeckToStorage, fetchDeckFromStorage, fetchDecksFromStorage} from '../util/StorageApi';
 
 //retrieves all decks from storage
 export const getDecks = () => dispatch =>
@@ -34,11 +34,11 @@ export const saveDeckTitle = (deck) => dispatch => {
 };
 
 export const addCardToDeck = (parentTitle, card) => dispatch => {
-    addCardToDeck(parentTitle, card)
+    addCardToDeckStorage(parentTitle, card)
         .then((deck) => dispatch(
             {
                 type: ADD_CARD_TO_DECK,
-                deck
+                deck: {...deck[0]}
             }
         ))
 };
