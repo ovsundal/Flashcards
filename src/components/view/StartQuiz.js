@@ -16,7 +16,7 @@ class StartQuiz extends React.Component {
 
         this.state = {
             currentScore: 0,
-            cardIndex: 0
+            cardIndex: 1
         }
     }
 
@@ -42,13 +42,14 @@ class StartQuiz extends React.Component {
         return (
             <View>
                 {Object.keys(singleDeck).length > 0
+                && cardIndex <= singleDeck.questions.length
                 &&
                 <View>
                     <Text>{cardIndex} / {singleDeck.questions.length}</Text>
                     <Text>Score: {currentScore} / {singleDeck.questions.length}</Text>
 
-                    {[singleDeck.questions[cardIndex]].map((card) =>
-                        <Card>
+                    {[singleDeck.questions[cardIndex - 1]].map((card) =>
+                        <Card key={cardIndex - 1}>
 
                             <Text>Question: {card.question}</Text>
                             <Text>Answer: {card.answer}</Text>
