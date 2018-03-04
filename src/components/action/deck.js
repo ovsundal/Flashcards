@@ -33,8 +33,8 @@ export const saveDeckTitle = (deck) => dispatch => {
         ));
 };
 
-
 export const addCardToDeck = (card, parentId) => {
+    console.log('add card to deck called')
     return {
         type: ADD_QUESTION_TO_DECK,
         card: card,

@@ -15,9 +15,7 @@ class SingleDeck extends React.Component {
     }
 
     addNewCardHandler = (title) => {
-
-      console.log('handler called' )
-      console.log(title)
+        this.props.navigation.navigate('NewQuestion', title);
 
     };
 

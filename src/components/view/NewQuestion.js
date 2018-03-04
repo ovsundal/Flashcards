@@ -15,25 +15,28 @@ const Question = t.struct({
 class NewQuestion extends React.Component {
 
     //extract form data, add parentId, dispatch and clear form
-    handleSubmit = () => {
+    handleNewCardSubmit = () => {
         const card = JSON.parse(JSON.stringify(this._form.getValue()));
-        this.props.dispatch(addCardToDeck(card));
+        const deckTitle = this.props.navigation.state.params;
+
+        // this.props.addCardToDeck(deckTitle, card);
         this.setState({value: null});
+        this.props.navigation.goBack();
     };
 
     render() {
-        const deck = this.props.navigation.state.params;
-        console.log(deck)
+        const deckTitle = this.props.navigation.state.params;
+        console.log(deckTitle)
         return(
             <View>
-                <Text>Current deck: {deck.title}</Text>
+                <Text>Current deck: {deckTitle}</Text>
 
                 <Form
                     ref={c => this._form = c}
                     type={Question} />
                 <Button
                 title='Submit'
-                onPress={this.handleSubmit}
+                onPress={this.handleNewCardSubmit}
                 />
 
             </View>
@@ -47,4 +50,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(
+    mapStateToProps,
+    {addCardToDeck}
+    )(NewQuestion)

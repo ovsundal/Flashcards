@@ -57,3 +57,4 @@ export function addDeckToStorage(deck) {
             return fetchDecksFromStorage()
         })
 }
+
