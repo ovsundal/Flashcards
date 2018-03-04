@@ -58,6 +58,7 @@ export function addDeckToStorage(deck) {
 export function addCardToDeckStorage(parentTitle, card) {
     return AsyncStorage.getItem(DECK_KEY)
     //retrieve the decks, find the correct deck, and add the card
+    //QUESTION this will only update the singleDeck reducer, so card count in DeckList will be wrong. How can i fix it?
         .then((decks) => {
             decks = JSON.parse(decks);
             decks[parentTitle].questions.push(card);

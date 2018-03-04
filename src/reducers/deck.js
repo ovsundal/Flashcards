@@ -4,9 +4,6 @@ export default function deckReducer(state = {}, action) {
     switch (action.type) {
 
         case GET_ALL_DECKS: {
-            console.log('GET_ALL_DECKS reducer called')
-            console.log(state)
-            console.log(action.decks)
             return {...state, ...action.decks};
         }
 

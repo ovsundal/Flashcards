@@ -19,9 +19,10 @@ class SingleDeck extends React.Component {
 
     };
 
-    startQuizHandler = () => {
+    startQuizHandler = (title) => {
+        this.props.navigation.navigate('StartQuiz', title);
         console.log('start quiz')
-    }
+    };
 
     render() {
         const {singleDeck} = this.props;
@@ -39,7 +40,7 @@ class SingleDeck extends React.Component {
                             onPress={() => this.addNewCardHandler(singleDeck.title)}
                             /><Button
                             title='Start quiz'
-                            onPress={this.startQuizHandler}
+                            onPress={() => this.startQuizHandler(singleDeck.title)}
                             />
                     </View>
                 }
