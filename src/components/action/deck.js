@@ -1,4 +1,4 @@
-import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "./types";
+import {ADD_NEW_DECK, ADD_CARD_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "./types";
 import {addDeckToStorage, fetchDeckFromStorage, fetchDecksFromStorage} from '../util/StorageApi';
 
 //retrieves all decks from storage
@@ -33,13 +33,15 @@ export const saveDeckTitle = (deck) => dispatch => {
         ));
 };
 
-export const addCardToDeck = (card, parentId) => {
-    console.log('add card to deck called')
-    return {
-        type: ADD_QUESTION_TO_DECK,
-        card: card,
-        parentId: parentId
-    }
+export const addCardToDeck = (parentTitle, card) => dispatch => {
+    addCardToDeck(parentTitle, card)
+        .then((deck) => dispatch(
+            {
+                type: ADD_CARD_TO_DECK,
+                deck
+            }
+        ))
 };
+
 
 

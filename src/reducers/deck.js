@@ -1,4 +1,4 @@
-import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "../components/action/types";
+import {ADD_NEW_DECK, ADD_CARD_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "../components/action/types";
 
 export default function deckReducer(state = {}, action) {
     switch (action.type) {
@@ -25,7 +25,7 @@ export default function deckReducer(state = {}, action) {
         //     return singleDeck;
         // }
 
-        case ADD_QUESTION_TO_DECK: {
+        case ADD_CARD_TO_DECK: {
 
 
             return state;

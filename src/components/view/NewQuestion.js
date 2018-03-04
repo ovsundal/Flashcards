@@ -19,7 +19,7 @@ class NewQuestion extends React.Component {
         const card = JSON.parse(JSON.stringify(this._form.getValue()));
         const deckTitle = this.props.navigation.state.params;
 
-        // this.props.addCardToDeck(deckTitle, card);
+        this.props.addCardToDeck(deckTitle, card);
         this.setState({value: null});
         this.props.navigation.goBack();
     };
