@@ -8,12 +8,8 @@ export default function singleDeckReducer(state = {}, action) {
         }
 
         case ADD_CARD_TO_DECK: {
-
-console.log('addcardtodeck REDUCER called, return this')
-// console.log(state)
-console.log(action.deck)
-// console.log({...action.deck})
-            return action.deck;
+            //this only updates singledeck view, how can i make it update decklist view? Count is wrong there
+            return {...action.deck};
         }
 
         default: {

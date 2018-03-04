@@ -10,7 +10,8 @@ const Tabs = TabNavigator({
         screen: Decks
     },
     NewDeck: {
-        screen: NewDeck
+        screen: NewDeck,
+        navigationOptions: {title: 'New Deck'}
     }
 });
 
