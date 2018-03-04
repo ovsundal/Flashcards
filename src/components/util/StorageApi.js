@@ -34,12 +34,17 @@ export function fetchDecksFromStorage() {
         });
 }
 
-// export function fetchDecksFromStorage() {
-//     return AsyncStorage.getItem(DECK_KEY)
-//         .then(results => {
-//             return results === null ? feedInitialData() : JSON.parse(results)
-//         });
-// }
+export function fetchDeckFromStorage(title) {
+    return AsyncStorage.getItem(DECK_KEY)
+        .then(results => {
+            // console.log('fetchdeck from async called, title:')
+            // // console.log(results)
+            // console.log('single')
+            return Object.values(JSON.parse(results)).filter((deck) => {
+                return deck.title === title;
+            });
+        });
+}
 
 export function feedInitialData() {
     AsyncStorage.setItem(DECK_KEY, JSON.stringify(data));

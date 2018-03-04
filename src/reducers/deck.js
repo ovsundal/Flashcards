@@ -1,7 +1,6 @@
-import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS} from "../components/action/types";
-const {List} = require('immutable');
+import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "../components/action/types";
 
-export default function DeckReducer(state = {}, action) {
+export default function deckReducer(state = {}, action) {
     switch (action.type) {
 
         case GET_ALL_DECKS: {
@@ -12,21 +11,21 @@ export default function DeckReducer(state = {}, action) {
             return {...action.decks};
         }
 
+        // case GET_SINGLE_DECK: {
+        //     let singleDeck = {};
+        //
+        //     //find single deck and hard copy
+        //     for (const key in state) {
+        //         if (key === action.deck) {
+        //             singleDeck = {...state[key]};
+        //             break;
+        //         }
+        //     }
+        //
+        //     return singleDeck;
+        // }
+
         case ADD_QUESTION_TO_DECK: {
-
-            console.log('add question red called')
-            // console.log(action.card)
-            // console.log(state)
-            // console.log(action.card)
-
-            const newState = List([...state].filter(deck => deck.id = action.parentId));
-
-            // console.log(newState)
-            // console.log(...newState)
-            // console.log(...newState['questions'])
-            // console.log(newState[0].questions)
-            // newState.questions.push(action.card)
-
 
 
             return state;

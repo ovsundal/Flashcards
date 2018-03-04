@@ -1,6 +1,7 @@
-import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS} from "./types";
-import {addDeckToStorage, fetchDecksFromStorage} from '../util/StorageApi';
+import {ADD_NEW_DECK, ADD_QUESTION_TO_DECK, GET_ALL_DECKS, GET_SINGLE_DECK} from "./types";
+import {addDeckToStorage, fetchDeckFromStorage, fetchDecksFromStorage} from '../util/StorageApi';
 
+//retrieves all decks from storage
 export const getDecks = () => dispatch =>
     fetchDecksFromStorage()
         .then((decks) => dispatch(
@@ -9,6 +10,18 @@ export const getDecks = () => dispatch =>
                 decks
             }
         ));
+
+//retrieves a single deck from store
+export const getDeck = (title) => dispatch => {
+
+    fetchDeckFromStorage(title)
+        .then((deck) => dispatch(
+            {
+                type: GET_SINGLE_DECK,
+                ...deck[0]
+            }
+        ));
+};
 
 export const saveDeckTitle = (deck) => dispatch => {
     addDeckToStorage(deck)

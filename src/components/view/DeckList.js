@@ -15,6 +15,8 @@ class DeckList extends React.Component {
 
     render() {
         const decks = this.props.decks;
+        // console.log('render in decklist called')
+        // console.log(decks)
         return (
             <View>
                 {decks !== undefined
@@ -23,7 +25,7 @@ class DeckList extends React.Component {
                     <FlatList
                         data={decks}
                         renderItem={({item}) =>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('SingleDeck')}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('SingleDeck', item.title)}>
                                 <Card
                                     title={item.title}>
                                     <Text>Cards in deck: {item.questions.length}</Text>
@@ -41,6 +43,8 @@ class DeckList extends React.Component {
 }
 
 function mapStateToProps({deckReducer}) {
+    // console.log('mapstate IN DECKLIST CALLED ')
+    // console.log(deckReducer)
     return {
         decks: Object.values(deckReducer)
     }
