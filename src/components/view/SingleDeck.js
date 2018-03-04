@@ -14,14 +14,30 @@ class SingleDeck extends React.Component {
         this.props.getDeck(deckTitle)
     }
 
+    addNewCardHandler = (title) => {
+
+      console.log('handler called' )
+      console.log(title)
+
+    };
+
     render() {
         const {singleDeck} = this.props;
 
         return (
             <View>
+                {/*if object is not empty, render the deck*/}
                 {Object.keys(singleDeck).length > 0
                     &&
-                    <Text>Current deck: {singleDeck.title}</Text>}
+                    <View>
+                        <Text>Current deck: {singleDeck.title}</Text>
+                        <Text>Number of cards: {singleDeck.questions.length}</Text>
+                        <Button
+                            title='Add new question'
+                            onPress={() => this.addNewCardHandler(singleDeck.title)}
+                            />
+                    </View>
+                }
 
             </View>
 
