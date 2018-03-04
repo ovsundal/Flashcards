@@ -26,7 +26,6 @@ class NewQuestion extends React.Component {
 
     render() {
         const deckTitle = this.props.navigation.state.params;
-        console.log(deckTitle)
         return(
             <View>
                 <Text>Current deck: {deckTitle}</Text>

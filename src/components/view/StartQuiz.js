@@ -23,10 +23,12 @@ class StartQuiz extends React.Component {
                 {Object.keys(singleDeck).length > 0
                 &&
                 <View>
-
-                    <Text>START QUIZ VIEW for {singleDeck.title}</Text>
-
-
+                    <Text>0 / {singleDeck.questions.length}</Text>
+                    {singleDeck.questions.map((card) =>
+                        <View>
+                            <Text>Question: {card.question}</Text>
+                            <Text>Answer: {card.answer}</Text>
+                        </View>)}
                 </View>
                 }
 
