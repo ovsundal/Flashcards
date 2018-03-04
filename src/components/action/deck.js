@@ -18,7 +18,7 @@ export const getDeck = (title) => dispatch => {
         .then((deck) => dispatch(
             {
                 type: GET_SINGLE_DECK,
-                ...deck[0]
+                deck: {...deck[0]}
             }
         ));
 };
