@@ -9,9 +9,9 @@ class SingleDeck extends React.Component {
     constructor(props) {
         super(props);
 
-        //how to force rerender when navigating back?
+        //TODO: how to force rerender when navigating back?
         // https://github.com/react-navigation/react-navigation/issues/922#issuecomment-304827787
-        console.log(this.props.navigation.state.params.onNavigateBack());
+        // console.log(this.props.navigation.state.params.onNavigateBack());
 
         //get single deck details
         const deckTitle = this.props.navigation.state.params.title;

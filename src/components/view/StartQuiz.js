@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {getDeck} from "../action";
+import {Card} from "react-native-elements";
 
 
 class StartQuiz extends React.Component {
@@ -12,7 +13,27 @@ class StartQuiz extends React.Component {
         //get single deck details
         const deckTitle = this.props.navigation.state.params;
         this.props.getDeck(deckTitle)
+
+        this.state = {
+            currentScore: 0,
+            cardIndex: 0
+        }
     }
+
+    handleAnswer = (type) => {
+        const newState = {...this.state};
+
+        if(type === 'correct') {
+            newState.cardIndex++;
+            newState.currentScore++;
+        } else {
+            newState.cardIndex++;
+        }
+
+        this.setState({
+            ...newState
+        })
+    };
 
     render() {
 
@@ -23,12 +44,25 @@ class StartQuiz extends React.Component {
                 {Object.keys(singleDeck).length > 0
                 &&
                 <View>
-                    <Text>0 / {singleDeck.questions.length}</Text>
+                    <Text>{this.state.cardIndex} / {singleDeck.questions.length}</Text>
+                    <Text>Score: {this.state.currentScore} / {singleDeck.questions.length}</Text>
+
                     {singleDeck.questions.map((card) =>
-                        <View>
+                        <Card>
                             <Text>Question: {card.question}</Text>
+
                             <Text>Answer: {card.answer}</Text>
-                        </View>)}
+
+                            <Button
+                            title='Correct'
+                            onPress={() => this.handleAnswer('correct')}
+                            />
+                            <Button
+                            title='Incorrect'
+                            onPress={() => this.handleAnswer('incorrect')}
+                            />
+
+                        </Card>)}
                 </View>
                 }
 
