@@ -16,29 +16,37 @@ class StartQuiz extends React.Component {
 
         this.state = {
             currentScore: 0,
-            cardIndex: 1
+            cardIndex: 1,
+            viewAnswer: false
         }
     }
 
-    handleAnswer = (type) => {
+    handleCommitAnswer = (type) => {
         const newState = {...this.state};
 
         if (type === 'correct') {
-            newState.cardIndex++;
             newState.currentScore++;
-        } else {
-            newState.cardIndex++;
         }
+
+        newState.cardIndex++;
+        newState.viewAnswer = false;
 
         this.setState({
             ...newState
         })
     };
 
+    handleViewAnswer = () => {
+        this.setState({
+            viewAnswer: true
+        })
+
+    };
+
     render() {
 
         const {singleDeck} = this.props;
-        const {cardIndex, currentScore} = this.state;
+        const {cardIndex, currentScore, viewAnswer} = this.state;
         return (
             <View>
                 {Object.keys(singleDeck).length > 0
@@ -52,15 +60,21 @@ class StartQuiz extends React.Component {
                         <Card key={cardIndex - 1}>
 
                             <Text>Question: {card.question}</Text>
-                            <Text>Answer: {card.answer}</Text>
+
+                            <Button
+                                title='View Answer'
+                                onPress={this.handleViewAnswer}
+                            />
+                            {/*only show answer if user clicks button*/}
+                            {viewAnswer &&<Text>{card.answer}</Text>}
 
                             <Button
                                 title='Correct'
-                                onPress={() => this.handleAnswer('correct')}
+                                onPress={() => this.handleCommitAnswer('correct')}
                             />
                             <Button
                                 title='Incorrect'
-                                onPress={() => this.handleAnswer('incorrect')}
+                                onPress={() => this.handleCommitAnswer('incorrect')}
                             />
 
                         </Card>
