@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {getDeck} from "../action";
+import * as BackHandler from "react-native/Libraries/Utilities/BackHandler.android";
 
 
 class SingleDeck extends React.Component {
@@ -11,11 +12,16 @@ class SingleDeck extends React.Component {
 
         //TODO: how to force rerender when navigating back?
         // https://github.com/react-navigation/react-navigation/issues/922#issuecomment-304827787
-        // console.log(this.props.navigation.state.params.onNavigateBack());
+        // this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
+        // this.props.navigation.goBack();
+
+        //if hardware 'back' button leads to decklist, rerender the list / do nothing if back leads to NewDeck view
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
+        });
 
         //get single deck details
         const deckTitle = this.props.navigation.state.params.title;
-        console.log(this.props.navigation.state)
         this.props.getDeck(deckTitle)
     }
 

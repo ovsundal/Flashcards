@@ -14,6 +14,9 @@ class NewDeck extends React.Component {
         }
     }
 
+    handleOnNavigateBack = () => {
+    };
+
     //generate new deck, send it to action, reset state and navigate to singledeck view
     addNewDeckHandler = () => {
 
@@ -26,7 +29,8 @@ class NewDeck extends React.Component {
         this.props.navigation.navigate(
             'SingleDeck',
             {
-                title: nameOfNewDeck
+                title: nameOfNewDeck,
+                onNavigateBack: this.handleOnNavigateBack
             }
         );
     };
