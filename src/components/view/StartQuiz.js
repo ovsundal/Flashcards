@@ -16,7 +16,7 @@ class StartQuiz extends React.Component {
 
         this.state = {
             currentScore: 0,
-            cardIndex: 1,
+            cardIndex: 0,
             viewAnswer: false
         }
     }
@@ -43,21 +43,28 @@ class StartQuiz extends React.Component {
 
     };
 
+    restartQuiz = () => {
+        this.setState({
+            currentScore: 0,
+            cardIndex: 0,
+            viewAnswer: false
+        })
+    };
+
+
     render() {
 
         const {singleDeck} = this.props;
         const {cardIndex, currentScore, viewAnswer} = this.state;
         return (
             <View>
+                <Text>{cardIndex} / {singleDeck.questions.length}</Text>
                 {Object.keys(singleDeck).length > 0
-                && cardIndex <= singleDeck.questions.length
+                && cardIndex < singleDeck.questions.length
                 &&
                 <View>
-                    <Text>{cardIndex} / {singleDeck.questions.length}</Text>
-                    <Text>Score: {currentScore} / {singleDeck.questions.length}</Text>
-
-                    {[singleDeck.questions[cardIndex - 1]].map((card) =>
-                        <Card key={cardIndex - 1}>
+                    {[singleDeck.questions[cardIndex]].map((card) =>
+                        <Card key={cardIndex}>
 
                             <Text>Question: {card.question}</Text>
 
@@ -66,7 +73,7 @@ class StartQuiz extends React.Component {
                                 onPress={this.handleViewAnswer}
                             />
                             {/*only show answer if user clicks button*/}
-                            {viewAnswer &&<Text>{card.answer}</Text>}
+                            {viewAnswer && <Text>{card.answer}</Text>}
 
                             <Button
                                 title='Correct'
@@ -79,15 +86,27 @@ class StartQuiz extends React.Component {
 
                         </Card>
                     )}
-
-
                 </View>
                 }
 
+                {/*TODO: show score screen when all questions are done*/}
+                {cardIndex === singleDeck.questions.length
+                &&
+                <Card>
+                    <Text>{100 * currentScore / singleDeck.questions.length}%</Text>
+                    <Text>You answered {currentScore} of {singleDeck.questions.length} questions correctly</Text>
+                    <Button
+                        title='Restart Quiz'
+                        onPress={this.restartQuiz}
+                    />
+                    <Button
+                        title='Back to Deck'
+                    />
+                </Card>
+                }
             </View>
         )
     }
-
 }
 
 function mapStateToProps({singleDeckReducer}) {

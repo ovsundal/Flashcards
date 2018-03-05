@@ -26,7 +26,7 @@ const data = {
         ]
     }
 };
-
+//to reset app, use return results !== null ? feedInitialData() : JSON.parse(results)
 export function fetchDecksFromStorage() {
     return AsyncStorage.getItem(DECK_KEY)
         .then(results => {
