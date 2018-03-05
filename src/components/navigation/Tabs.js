@@ -17,17 +17,17 @@ const Tabs = TabNavigator({
 
 
 const Stack = StackNavigator({
-   Home: {
-       screen: Tabs
-   },
+    Home: {
+        screen: Tabs
+    },
     SingleDeck: {
-       screen: SingleDeck
+        screen: SingleDeck
     },
     NewQuestion: {
-       screen: NewQuestion
+        screen: NewQuestion
     },
     StartQuiz: {
-       screen: StartQuiz
+        screen: StartQuiz
     }
 });
 

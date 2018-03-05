@@ -3,6 +3,7 @@ import {Button, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {getDeck} from "../action";
 import {Card} from "react-native-elements";
+import Decks from "./DeckList";
 
 
 class StartQuiz extends React.Component {
@@ -43,13 +44,18 @@ class StartQuiz extends React.Component {
 
     };
 
-    restartQuiz = () => {
+    handleRestartQuiz = () => {
         this.setState({
             currentScore: 0,
             cardIndex: 0,
             viewAnswer: false
         })
     };
+
+    handleBackToDeck = () => {
+      this.props.navigation.navigate('Decks');
+    };
+
 
 
     render() {
@@ -88,8 +94,6 @@ class StartQuiz extends React.Component {
                     )}
                 </View>
                 }
-
-                {/*TODO: show score screen when all questions are done*/}
                 {cardIndex === singleDeck.questions.length
                 &&
                 <Card>
@@ -97,10 +101,11 @@ class StartQuiz extends React.Component {
                     <Text>You answered {currentScore} of {singleDeck.questions.length} questions correctly</Text>
                     <Button
                         title='Restart Quiz'
-                        onPress={this.restartQuiz}
+                        onPress={this.handleRestartQuiz}
                     />
                     <Button
                         title='Back to Deck'
+                        onPress={this.handleBackToDeck}
                     />
                 </Card>
                 }
