@@ -15,6 +15,7 @@ class SingleDeck extends React.Component {
 
         //get single deck details
         const deckTitle = this.props.navigation.state.params.title;
+        console.log(this.props.navigation.state)
         this.props.getDeck(deckTitle)
     }
 

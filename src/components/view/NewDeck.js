@@ -23,7 +23,12 @@ class NewDeck extends React.Component {
 
         this.props.saveDeckTitle(newDeck);
         this.state.title = '';
-        this.props.navigation.navigate('SingleDeck', nameOfNewDeck);
+        this.props.navigation.navigate(
+            'SingleDeck',
+            {
+                title: nameOfNewDeck
+            }
+        );
     };
 
     render() {

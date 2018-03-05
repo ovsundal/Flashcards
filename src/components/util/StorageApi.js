@@ -30,7 +30,7 @@ const data = {
 export function fetchDecksFromStorage() {
     return AsyncStorage.getItem(DECK_KEY)
         .then(results => {
-            return results === null ? feedInitialData() : JSON.parse(results)
+            return results !== null ? feedInitialData() : JSON.parse(results)
         });
 }
 
