@@ -13,9 +13,8 @@ class DeckList extends React.Component {
         this.props.getDecks();
     }
 
-    //rerender to get added cards
+    //cb from SingleDeck, updates card count
     handleOnNavigateBack = () => {
-        console.log('handeonnavigateback called')
         this.props.getDecks();
     };
 

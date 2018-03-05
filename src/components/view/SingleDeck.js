@@ -10,19 +10,23 @@ class SingleDeck extends React.Component {
     constructor(props) {
         super(props);
 
-        //TODO: how to force rerender when navigating back?
-        // https://github.com/react-navigation/react-navigation/issues/922#issuecomment-304827787
-        // this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
-        // this.props.navigation.goBack();
-
         //if hardware 'back' button leads to decklist, rerender the list / do nothing if back leads to NewDeck view
         BackHandler.addEventListener('hardwareBackPress', () => {
+            if(this.props.navigation.state.params.onNavigateBack) {
                 this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
+            }
         });
 
         //get single deck details
         const deckTitle = this.props.navigation.state.params.title;
         this.props.getDeck(deckTitle)
+    }
+
+    componentWillUnmount() {
+        if(this.props.navigation.state.params.onNavigateBack) {
+            this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
+        }
+
     }
 
     addNewCardHandler = (title) => {

@@ -21,7 +21,7 @@ const Stack = StackNavigator({
         screen: Tabs
     },
     SingleDeck: {
-        screen: SingleDeck
+        screen: SingleDeck,
     },
     NewQuestion: {
         screen: NewQuestion
