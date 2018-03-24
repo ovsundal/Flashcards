@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {FlatList, Text, TouchableOpacity, View, Animated} from "react-native";
 import {connect} from "react-redux";
 import {Card, List} from "react-native-elements";
 import {getDecks} from "../action";
@@ -10,7 +10,32 @@ class DeckList extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            opacity: new Animated.Value(1)
+        };
+
         this.props.getDecks();
+    }
+
+    doAnimationAndChangeScreen(title) {
+
+        Animated.timing(
+            this.state.opacity,
+            {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true,
+            }
+        ).start(() => {
+            this.props.navigation.navigate(
+                'SingleDeck',
+                {
+                    title: title,
+                    onNavigateBack: this.handleOnNavigateBack
+                }
+            );
+            this.setState({opacity: new Animated.Value(1)})
+        });
     }
 
     //cb from SingleDeck, updates card count
@@ -19,9 +44,10 @@ class DeckList extends React.Component {
     };
 
     render() {
+        const {opacity} = this.state;
         const decks = this.props.decks;
         return (
-            <View style={styles.containerStyle}>
+            <Animated.View style={[styles.containerStyle, {opacity}]}>
                 {decks !== undefined
                 && Object.values(decks).length > 0
                 && <List>
@@ -29,13 +55,8 @@ class DeckList extends React.Component {
                         data={decks}
                         renderItem={({item}) =>
                             <TouchableOpacity onPress={() =>
-                                this.props.navigation.navigate(
-                                    'SingleDeck',
-                                    {
-                                        title: item.title,
-                                        onNavigateBack: this.handleOnNavigateBack
-                                    }
-                                )}>
+                                this.doAnimationAndChangeScreen(item.title)
+                            }>
                                 <Card
                                     title={item.title}>
                                     <Text>Cards in deck: {item.questions.length}</Text>
@@ -46,7 +67,7 @@ class DeckList extends React.Component {
                     />
                 </List>
                 }
-            </View>
+            </Animated.View>
 
         )
     }

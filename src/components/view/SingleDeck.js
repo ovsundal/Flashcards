@@ -5,16 +5,6 @@ import {getDeck} from "../action";
 import * as BackHandler from "react-native/Libraries/Utilities/BackHandler.android";
 import {clearLocalNotification, setLocalNotification} from "../util/Notification";
 
-function AddQuestionButton({onPress}) {
-    return (
-        <TouchableOpacity
-            style={styles.button}
-            onPress={onPress}>
-            <Text>Add new question</Text>
-        </TouchableOpacity>
-    )
-}
-
 class SingleDeck extends React.Component {
 
     constructor(props) {
