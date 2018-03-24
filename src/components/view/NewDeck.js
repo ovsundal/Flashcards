@@ -2,44 +2,51 @@ import React from "react";
 import {Button, Text, TextInput, View} from "react-native";
 import {connect} from 'react-redux';
 import {saveDeckTitle} from "../action/index";
+import t from 'tcomb-form-native';
+
+const Form = t.form.Form;
+const nameOfNewDeck = t.struct({
+    title: t.String
+});
 
 class NewDeck extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            title: '',
-            questions: []
-        }
     }
 
     //generate new deck, send it to action, reset state and navigate to singledeck view
     addNewDeckHandler = () => {
 
-        const nameOfNewDeck = JSON.parse(JSON.stringify(this.state.title));
-        const newDeck = {};
-        newDeck[nameOfNewDeck] = {...this.state};
+        const deckValue = JSON.parse(JSON.stringify(this._form.getValue()));
 
-        this.props.saveDeckTitle(newDeck);
-        this.state.title = '';
-        this.props.navigation.navigate(
-            'SingleDeck',
-            {
-                title: nameOfNewDeck,
-                onNavigateBack: false
-            }
-        );
+        //validate user input
+        if (deckValue) {
+
+            const newDeckTitle = Object.values(deckValue)[0];
+
+            //construct new deck
+            const newDeck =
+                {
+                    newDeckTitle:
+                        {
+                            questions: [],
+                            title: newDeckTitle
+                        }
+                };
+
+            this.props.saveDeckTitle(newDeck);
+            this.props.navigation.goBack();
+        }
     };
 
     render() {
         return (
             <View>
                 <Text>Name of new deck:</Text>
-                <TextInput
-                    onChangeText={(title) => this.setState({title})}
-                    value={this.state.title}
-                />
+                <Form
+                    ref={c => this._form = c}
+                    type={nameOfNewDeck}/>
                 <Button
                     onPress={this.addNewDeckHandler}
                     title='Add Deck'
