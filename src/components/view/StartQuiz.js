@@ -53,15 +53,15 @@ class StartQuiz extends React.Component {
     };
 
     handleBackToDeck = () => {
-      this.props.navigation.navigate('Decks');
+        this.props.navigation.navigate('Decks');
     };
 
     render() {
         const {singleDeck} = this.props;
         const {cardIndex, currentScore, viewAnswer} = this.state;
         return (
-            <View>
-                <Text>{cardIndex} / {singleDeck.questions.length}</Text>
+            <View style={styles.containerStyle}>
+                <Text style={{fontSize: 25}}>{cardIndex} / {singleDeck.questions.length}</Text>
                 {Object.keys(singleDeck).length > 0
                 && cardIndex < singleDeck.questions.length
                 &&
@@ -69,23 +69,29 @@ class StartQuiz extends React.Component {
                     {[singleDeck.questions[cardIndex]].map((card) =>
                         <Card key={cardIndex}>
 
-                            <Text>Question: {card.question}</Text>
-
-                            <Button
-                                title='View Answer'
-                                onPress={this.handleViewAnswer}
-                            />
+                            <Text style={styles.text}>
+                                Question: {card.question}
+                            </Text>
+                            <View style={styles.button}>
+                                <Button
+                                    title='View Answer'
+                                    onPress={this.handleViewAnswer}
+                                />
+                            </View>
                             {/*only show answer if user clicks button*/}
-                            {viewAnswer && <Text>{card.answer}</Text>}
-
-                            <Button
-                                title='Correct'
-                                onPress={() => this.handleCommitAnswer('correct')}
-                            />
-                            <Button
-                                title='Incorrect'
-                                onPress={() => this.handleCommitAnswer('incorrect')}
-                            />
+                            {viewAnswer && <Text style={styles.answer}>{card.answer}</Text>}
+                            <View style={styles.button}>
+                                <Button
+                                    title='Correct'
+                                    onPress={() => this.handleCommitAnswer('correct')}
+                                />
+                            </View>
+                            <View style={styles.button}>
+                                <Button
+                                    title='Incorrect'
+                                    onPress={() => this.handleCommitAnswer('incorrect')}
+                                />
+                            </View>
 
                         </Card>
                     )}
@@ -94,22 +100,45 @@ class StartQuiz extends React.Component {
                 {cardIndex === singleDeck.questions.length
                 &&
                 <Card>
-                    <Text>{100 * currentScore / singleDeck.questions.length}%</Text>
-                    <Text>You answered {currentScore} of {singleDeck.questions.length} questions correctly</Text>
-                    <Button
-                        title='Restart Quiz'
-                        onPress={this.handleRestartQuiz}
-                    />
-                    <Button
-                        title='Back to Deck'
-                        onPress={this.handleBackToDeck}
-                    />
+                    <Text style={styles.text}>{Math.round(100 * currentScore / singleDeck.questions.length)}%</Text>
+                    <Text style={styles.text}>You answered {currentScore} of {singleDeck.questions.length} questions
+                        correctly</Text>
+                    <View style={styles.button}>
+                        <Button
+                            title='Restart Quiz'
+                            onPress={this.handleRestartQuiz}
+                        />
+                    </View>
+                    <View style={styles.button}>
+                        <Button
+                            title='Back to Deck'
+                            onPress={this.handleBackToDeck}
+                        />
+                    </View>
                 </Card>
                 }
             </View>
         )
     }
 }
+
+const styles = {
+    containerStyle: {
+        flex: 1,
+        backgroundColor: '#778DA9',
+    },
+    text: {
+        fontSize: 25,
+        paddingBottom: 30
+    },
+    answer: {
+        fontSize: 20,
+        paddingBottom: 15
+    },
+    button: {
+        paddingBottom: 30
+    }
+};
 
 function mapStateToProps({singleDeckReducer}) {
     return {

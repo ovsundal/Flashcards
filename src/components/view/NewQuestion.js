@@ -31,8 +31,8 @@ class NewQuestion extends React.Component {
     render() {
         const deckTitle = this.props.navigation.state.params;
         return(
-            <View>
-                <Text>Current deck: {deckTitle}</Text>
+            <View style={styles.containerStyle}>
+                <Text style={styles.text}>Current deck: {deckTitle}</Text>
 
                 <Form
                     ref={c => this._form = c}
@@ -46,6 +46,17 @@ class NewQuestion extends React.Component {
         )
     }
 }
+
+const styles = {
+    containerStyle: {
+        flex: 1,
+        backgroundColor: '#778DA9',
+    },
+    text: {
+        fontSize: 25,
+        paddingBottom: 30
+    }
+};
 
 function mapStateToProps(state) {
     return {
