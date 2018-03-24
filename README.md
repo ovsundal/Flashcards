@@ -1,7 +1,7 @@
 # Project Flashcards
 
 This project is an app with flashcards, made in React-Native. A deck can be made, and questions can be added to the deck.
-Then, the questions from the flashcards can be run as a quiz.
+Then, the questions from the flashcards can be run as a quiz. The project was tested on the Android platform.
 
 ## Installation
 
