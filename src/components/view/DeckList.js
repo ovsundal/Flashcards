@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
+import {FlatList, Text, TouchableOpacity, View, StyleSheet} from "react-native";
 import {connect} from "react-redux";
 import {Card, List} from "react-native-elements";
 import {getDecks} from "../action";
@@ -21,7 +21,7 @@ class DeckList extends React.Component {
     render() {
         const decks = this.props.decks;
         return (
-            <View>
+            <View style={styles.containerStyle}>
                 {decks !== undefined
                 && Object.values(decks).length > 0
                 && <List>
@@ -51,6 +51,13 @@ class DeckList extends React.Component {
         )
     }
 }
+
+const styles = {
+    containerStyle: {
+        flex: 1,
+        backgroundColor: '#778DA9',
+    }
+};
 
 function mapStateToProps({deckReducer}) {
     return {

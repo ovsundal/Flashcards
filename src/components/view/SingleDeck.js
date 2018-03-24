@@ -5,6 +5,15 @@ import {getDeck} from "../action";
 import * as BackHandler from "react-native/Libraries/Utilities/BackHandler.android";
 import {clearLocalNotification, setLocalNotification} from "../util/Notification";
 
+function AddQuestionButton({onPress}) {
+    return (
+        <TouchableOpacity
+            style={styles.button}
+            onPress={onPress}>
+            <Text>Add new question</Text>
+        </TouchableOpacity>
+    )
+}
 
 class SingleDeck extends React.Component {
 
@@ -13,7 +22,7 @@ class SingleDeck extends React.Component {
 
         //if hardware 'back' button leads to decklist, rerender the list / do nothing if back leads to NewDeck view
         BackHandler.addEventListener('hardwareBackPress', () => {
-            if(this.props.navigation.state.params.onNavigateBack) {
+            if (this.props.navigation.state.params.onNavigateBack) {
                 this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
             }
         });
@@ -24,7 +33,7 @@ class SingleDeck extends React.Component {
     }
 
     componentWillUnmount() {
-        if(this.props.navigation.state.params.onNavigateBack) {
+        if (this.props.navigation.state.params.onNavigateBack) {
             this.props.navigation.state.params.onNavigateBack(this.handleOnNavigateBack);
         }
 
@@ -48,30 +57,46 @@ class SingleDeck extends React.Component {
         const {singleDeck} = this.props;
 
         return (
-            <View>
+            <View style={styles.containerStyle}>
                 {/*if object is not empty, render the deck*/}
                 {Object.keys(singleDeck).length > 0
-                    &&
-                    <View>
-                        <Text>Current deck: {singleDeck.title}</Text>
-                        <Text>Number of cards: {singleDeck.questions.length}</Text>
+                &&
+                <View>
+                    <Text style={styles.text}>Current deck: {singleDeck.title}</Text>
+                    <Text style={styles.text}>Number of cards: {singleDeck.questions.length}</Text>
+                    <View style={styles.button}>
                         <Button
                             title='Add new question'
                             onPress={() => this.addNewCardHandler(singleDeck.title)}
-                            /><Button
+                        />
+                    </View>
+                    <View style={styles.button}>
+                        <Button
                             title='Start quiz'
                             onPress={() => this.startQuizHandler(singleDeck.title)}
-                            />
+                        />
                     </View>
+
+                </View>
                 }
-
             </View>
-
-
         )
     }
-
 }
+
+const styles = {
+    containerStyle: {
+        flex: 1,
+        backgroundColor: '#778DA9',
+    },
+    text: {
+        fontSize: 25,
+        paddingBottom: 30
+    },
+    button: {
+        paddingBottom: 30
+    }
+};
 
 function mapStateToProps({singleDeckReducer}) {
     return {

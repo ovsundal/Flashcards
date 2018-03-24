@@ -42,8 +42,7 @@ class NewDeck extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text>Name of new deck:</Text>
+            <View style={styles.containerStyle}>
                 <Form
                     ref={c => this._form = c}
                     type={nameOfNewDeck}/>
@@ -55,6 +54,13 @@ class NewDeck extends React.Component {
         )
     }
 }
+
+const styles = {
+    containerStyle: {
+        flex: 1,
+        backgroundColor: '#778DA9',
+    }
+};
 
 function mapStateToProps(state) {
     return {
