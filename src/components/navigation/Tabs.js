@@ -6,30 +6,39 @@ import NewQuestion from "../view/NewQuestion";
 import StartQuiz from "../view/StartQuiz";
 
 const Tabs = TabNavigator({
-    Decks: {
-        screen: Decks,
-        navigationOptions: {title: 'List of Decks'}
+        Decks: {
+            screen: Decks,
+            navigationOptions: {title: 'List of Decks'}
+        },
+        NewDeck: {
+            screen: NewDeck,
+            navigationOptions: {title: 'New Deck'}
+        }
     },
-    NewDeck: {
-        screen: NewDeck,
-        navigationOptions: {title: 'New Deck'}
+    {
+        tabBarOptions: {
+            style: {
+                backgroundColor: '#415A77'
+            }
+        }
     }
-});
+);
 
 
 const Stack = StackNavigator({
-    Home: {
-        screen: Tabs
-    },
-    SingleDeck: {
-        screen: SingleDeck,
-    },
-    NewQuestion: {
-        screen: NewQuestion
-    },
-    StartQuiz: {
-        screen: StartQuiz
+        Home: {
+            screen: Tabs
+        },
+        SingleDeck: {
+            screen: SingleDeck,
+        },
+        NewQuestion: {
+            screen: NewQuestion
+        },
+        StartQuiz: {
+            screen: StartQuiz
+        }
     }
-});
+);
 
 export default Stack;
