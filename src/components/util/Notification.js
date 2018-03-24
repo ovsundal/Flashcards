@@ -31,6 +31,15 @@ export function setLocalNotification() {
                             tomorrow.setHours(20);
                             tomorrow.setMinutes(0);
 
+                            // QUESTION FOR REVIEWER: I can't get notifications to work on my
+                            // 'android phone. I've tried adjusting the time below, but nothing
+                            // happens when at that time. I'm not getting any question about
+                            //permissions either.
+
+                            // tomorrow.setDate(tomorrow.getDate());
+                            // tomorrow.setHours(22);
+                            // tomorrow.setMinutes(21);
+
                             Notifications.scheduleLocalNotificationAsync(
                                 createLocalNotification(),
                                 {

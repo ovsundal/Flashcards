@@ -14,7 +14,13 @@ class StartQuiz extends React.Component {
 
         //get single deck details
         const deckTitle = this.props.navigation.state.params;
-        this.props.getDeck(deckTitle)
+        this.props.getDeck(deckTitle);
+
+        //user started a quiz when component was invoked, reset notification
+        clearLocalNotification().then(() => {
+            setLocalNotification()
+        });
+
 
         this.state = {
             currentScore: 0,
