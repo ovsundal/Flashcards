@@ -3,6 +3,7 @@ import {Button, Text, View} from "react-native";
 import t from 'tcomb-form-native';
 import {connect} from "react-redux";
 import {addCardToDeck} from "../action";
+// import * as ToastAndroid from "react-native";
 
 //used this guide for creating form: https://medium.com/react-native-development/easily-build-forms-in-react-native-9006fcd2a73b
 const Form = t.form.Form;
@@ -16,12 +17,15 @@ class NewQuestion extends React.Component {
 
     //extract form data, add parentId, dispatch and clear form
     handleNewCardSubmit = () => {
-        const card = JSON.parse(JSON.stringify(this._form.getValue()));
-        const deckTitle = this.props.navigation.state.params;
+        const cardValue = JSON.parse(JSON.stringify(this._form.getValue()));
 
-        this.props.addCardToDeck(deckTitle, card);
-        this.setState({value: null});
-        this.props.navigation.goBack();
+        //validate user input
+        if(cardValue) {
+            const deckTitle = this.props.navigation.state.params;
+            this.props.addCardToDeck(deckTitle, cardValue);
+            this.setState({value: null});
+            this.props.navigation.goBack();
+        }
     };
 
     render() {
