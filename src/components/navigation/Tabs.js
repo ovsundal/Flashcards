@@ -7,7 +7,8 @@ import StartQuiz from "../view/StartQuiz";
 
 const Tabs = TabNavigator({
     Decks: {
-        screen: Decks
+        screen: Decks,
+        navigationOptions: {title: 'List of Decks'}
     },
     NewDeck: {
         screen: NewDeck,

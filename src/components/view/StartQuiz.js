@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getDeck} from "../action";
 import {Card} from "react-native-elements";
 import Decks from "./DeckList";
+import {setLocalNotification, clearLocalNotification} from "../util/Notification";
 
 
 class StartQuiz extends React.Component {
@@ -41,7 +42,6 @@ class StartQuiz extends React.Component {
         this.setState({
             viewAnswer: true
         })
-
     };
 
     handleRestartQuiz = () => {
@@ -56,10 +56,7 @@ class StartQuiz extends React.Component {
       this.props.navigation.navigate('Decks');
     };
 
-
-
     render() {
-
         const {singleDeck} = this.props;
         const {cardIndex, currentScore, viewAnswer} = this.state;
         return (

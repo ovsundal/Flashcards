@@ -3,6 +3,7 @@ import {Button, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
 import {getDeck} from "../action";
 import * as BackHandler from "react-native/Libraries/Utilities/BackHandler.android";
+import {clearLocalNotification, setLocalNotification} from "../util/Notification";
 
 
 class SingleDeck extends React.Component {
@@ -34,7 +35,12 @@ class SingleDeck extends React.Component {
 
     };
 
+    //reset notification and start quiz
     startQuizHandler = (title) => {
+
+        clearLocalNotification()
+            .then(setLocalNotification());
+
         this.props.navigation.navigate('StartQuiz', title);
     };
 
